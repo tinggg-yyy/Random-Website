@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/// ⏃⎅⟟⎅⏃⌇ /// V E R T I G O ///</title>
+    <style>
+        /* 异星三原色绝对统治 */
+        :root {
+            --r: #FF0033; /* 狂暴红 */
+            --p: #9900FF; /* 异维紫 */
+            --g: #00FF33; /* 毒液绿 */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: var(--r);
+            font-family: 'Arial Black', Impact, sans-serif;
+            perspective: 300px; /* 极端的透视角度，增加眩晕感 */
+            transform-style: preserve-3d;
+            cursor: none; /* 抹除人类痕迹 */
+        }
+
+        /* 致命频闪与背景色盲切换 */
+        body {
+            animation: deathStrobe 0.15s steps(2, end) infinite;
+        }
+
+        /* 极度粗糙的噪点颗粒层 (SVG Base64) */
+        #grain-overlay {
+            position: fixed;
+            top: -100%; left: -100%;
+            width: 300%; height: 300%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.8;
+            pointer-events: none;
+            mix-blend-mode: color-burn; /* 与背景产生剧烈化学反应 */
+            z-index: 9999;
+            animation: grainScream 0.08s infinite;
+        }
+
+        /* 宇宙级玻璃磨砂碎片容器 */
+        #glass-shatter-box {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            transform-style: preserve-3d;
+            animation: universeSpin 4s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite alternate;
+        }
+
+        /* 异形磨砂玻璃 */
+        .alien-glass {
+            position: absolute;
+            backdrop-filter: blur(40px) saturate(400%) hue-rotate(120deg);
+            -webkit-backdrop-filter: blur(40px) saturate(400%);
+            border: 5px solid var(--g);
+            background: linear-gradient(135deg, rgba(255,0,51,0.4), rgba(153,0,255,0.4));
+            box-shadow: 0 0 80px var(--p), inset 0 0 50px var(--r);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            mix-blend-mode: hard-light;
+        }
+
+        /* 强制洗脑文本 */
+        .subliminal {
+            position: absolute;
+            font-size: 15vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 4px var(--g);
+            text-shadow: 10px 10px 0 var(--r), -10px -10px 0 var(--p);
+            white-space: nowrap;
+            mix-blend-mode: exclusion;
+            pointer-events: none;
+            animation: textGlitch 0.1s infinite random;
+        }
+
+        /* 疯狂的三叶草与三条杠 */
+        .adidas-symbol {
+            position: absolute;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, var(--p) 0%, transparent 70%);
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: flex-end;
+            mix-blend-mode: difference;
+        }
+
+        .stripe-bar {
+            width: 30px;
+            background: var(--g);
+            box-shadow: 0 0 30px var(--r);
+            transform: skew(-20deg);
+        }
+
+        /* 动画定义区 (抛弃一切规律) */
+        @keyframes deathStrobe {
+            0% { background-color: var(--r); filter: invert(0); }
+            33% { background-color: var(--p); filter: invert(1); }
+            66% { background-color: var(--g); filter: hue-rotate(90deg); }
+            100% { background-color: var(--r); filter: invert(0) blur(5px); }
+        }
+
+        @keyframes grainScream {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-5%, 5%); }
+            40% { transform: translate(5%, -5%); }
+            60% { transform: translate(5%, 5%); }
+            80% { transform: translate(-5%, -5%); }
+        }
+
+        @keyframes universeSpin {
+            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.5); }
+            50% { transform: rotateX(180deg) rotateY(-360deg) rotateZ(180deg) scale(2); }
+            100% { transform: rotateX(-180deg) rotateY(180deg) rotateZ(-360deg) scale(0.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="grain-overlay"></div>
+
+    <div id="glass-shatter-box"></div>
+
+    <script>
+        const box = document.getElementById('glass-shatter-box');
+        const alienText = "⏃⎅⟟⎅⏃⌇ /// A D I D A S /// ⏁⊑⍀⟒⟒⌇⏁⍀⟟⌿⟒⌇ /// ⟒⎍⌿⊑⍜⍀⟟⏃";
+        const colors = ['#FF0033', '#9900FF', '#00FF33'];
+        
+        // 随机生成函数
+        const R = (min, max) => Math.random() * (max - min) + min;
+
+        // 1. 生成 40 块扭曲的异星磨砂玻璃
+        for(let i = 0; i < 40; i++) {
+            let glass = document.createElement('div');
+            glass.className = 'alien-glass';
+            glass.style.width = `${R(150, 600)}px`;
+            glass.style.height = `${R(150, 600)}px`;
+            
+            // 完全不规则的形状和极其扭曲的位置
+            glass.style.borderRadius = `${R(0,100)}% ${R(0,100)}% ${R(0,100)}% ${R(0,100)}%`;
+            glass.style.transform = `
+                translate3d(${R(-1500, 1500)}px, ${R(-1500, 1500)}px, ${R(-1000, 1000)}px)
+                rotateX(${R(0, 360)}deg) rotateY(${R(0, 360)}deg) rotateZ(${R(0, 360)}deg)
+            `;
+            
+            // 随机在玻璃中塞入三条杠或外星文本
+            if (Math.random() > 0.5) {
+                glass.innerHTML = `
+                    <div class="adidas-symbol" style="transform: scale(${R(0.5, 2)})">
+                        <div class="stripe-bar" style="height: ${R(50, 200)}px; background: ${colors[Math.floor(R(0,3))]};"></div>
+                        <div class="stripe-bar" style="height: ${R(100, 250)}px; background: ${colors[Math.floor(R(0,3))]};"></div>
+                        <div class="stripe-bar" style="height: ${R(150, 300)}px; background: ${colors[Math.floor(R(0,3))]};"></div>
+                    </div>
+                `;
+            } else {
+                glass.innerHTML = `<h1 style="color: ${colors[Math.floor(R(0,3))]}; font-size: ${R(3,10)}rem; text-shadow: 0 0 20px #fff;">///</h1>`;
+            }
+
+            box.appendChild(glass);
+        }
+
+        // 2. 生成满屏的潜意识乱码洗脑文字
+        let textNodes = [];
+        for(let i = 0; i < 15; i++) {
+            let text = document.createElement('div');
+            text.className = 'subliminal';
+            text.innerText = alienText;
+            box.appendChild(text);
+            textNodes.push({
+                el: text,
+                x: R(-2000, 2000),
+                y: R(-2000, 2000),
+                z: R(-500, 500),
+                rx: R(0, 360),
+                ry: R(0, 360)
+            });
+        }
+
+        // 3. Audio-Visual Vibe Engine: 利用 JS 每一帧强行刷新 DOM 属性，制造无法预测的颠倒和乱码
+        let time = 0;
+        function vibeCoding() {
+            time += 0.2; // 极高的时间流速
+            
+            textNodes.forEach((node, idx) => {
+                // 剧烈的空间跳跃和颠倒
+                let flip = Math.random() > 0.8 ? -1 : 1; 
+                node.el.style.transform = `
+                    translate3d(${node.x + Math.sin(time + idx)*500}px, ${node.y + Math.cos(time - idx)*500}px, ${node.z}px)
+                    rotateX(${node.rx + time * 50}deg) 
+                    rotateY(${node.ry - time * 50}deg)
+                    scaleY(${flip}) scaleX(${flip})
+                `;
+
+                // 文本内容的疯狂抖动（地球语言与异星代码交替）
+                if (Math.random() > 0.6) {
+                    let gibberish = "";
+                    for(let j=0; j<8; j++) gibberish += alienText[Math.floor(R(0, alienText.length))];
+                    node.el.innerText = gibberish;
+                    node.el.style.webkitTextStrokeColor = colors[Math.floor(R(0,3))];
+                } else {
+                    node.el.innerText = "ADIDAS /// EUPHORIA";
+                }
+            });
+
+            // 整个世界的震动反馈
+            document.body.style.transform = `scale(${1 + Math.random() * 0.1}) translate(${R(-10,10)}px, ${R(-10,10)}px)`;
+
+            requestAnimationFrame(vibeCoding);
+        }
+
+        // 启动超负荷渲染
+        vibeCoding();
+    </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/// ⏃⎅⟟⎅⏃⌇ /// T R E F O I L _ O V E R L O A D ///</title>
+    <style>
+        /* 绝对异星三原色，放逐一切黑白灰 */
+        :root {
+            --r: #FF003C; /* 狂暴红 */
+            --p: #7B00FF; /* 深渊紫 */
+            --g: #00FF2A; /* 毒液绿 */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: var(--p);
+            font-family: 'Arial Black', Impact, sans-serif;
+            perspective: 400px; /* 极端的透视畸变 */
+            transform-style: preserve-3d;
+            cursor: none;
+        }
+
+        /* 暴力噪点层 */
+        body::after {
+            content: "";
+            position: fixed;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.6;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            z-index: 9999;
+            animation: noiseGlitch 0.1s infinite;
+        }
+
+        /* 宇宙中心容器 */
+        #core-matrix {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            transform-style: preserve-3d;
+        }
+
+        /* 磨砂玻璃碎片容器 */
+        .glass-shard {
+            position: absolute;
+            backdrop-filter: blur(15px) saturate(300%);
+            -webkit-backdrop-filter: blur(15px) saturate(300%);
+            border: 3px solid rgba(0, 255, 42, 0.6); /* 绿色荧光边框 */
+            box-shadow: 0 0 40px var(--r), inset 0 0 30px var(--p);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            mix-blend-mode: hard-light;
+        }
+
+        /* 三条杠专属样式 */
+        .stripe-container {
+            display: flex;
+            gap: 15px;
+            transform: skewX(-20deg);
+        }
+        .stripe {
+            background-color: var(--g);
+            box-shadow: 0 0 20px var(--r);
+            height: 100%;
+            width: 30px;
+        }
+
+        /* 精神污染文本 */
+        .alien-text {
+            position: absolute;
+            font-size: 8vw;
+            color: var(--r);
+            -webkit-text-stroke: 3px var(--g);
+            text-shadow: 8px 8px 0 var(--p);
+            white-space: nowrap;
+            mix-blend-mode: difference;
+            pointer-events: none;
+        }
+
+        /* 全局频闪动画 */
+        .strobe-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--r);
+            mix-blend-mode: color-burn;
+            z-index: -1;
+            animation: strobePulse 0.12s steps(2, end) infinite;
+        }
+
+        @keyframes strobePulse {
+            0% { background: var(--r); }
+            33% { background: var(--p); }
+            66% { background: var(--g); }
+            100% { background: var(--r); filter: invert(100%); }
+        }
+
+        @keyframes noiseGlitch {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-2%, 2%); }
+            100% { transform: translate(2%, -2%); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="strobe-bg"></div>
+    <div id="core-matrix"></div>
+
+    <script>
+        const matrix = document.getElementById('core-matrix');
+        const colors = ['#FF003C', '#7B00FF', '#00FF2A'];
+        const alienChars = "⏃⎅⟟⎅⏃⌇ /// T R E F O I L ///";
+        
+        const R = (min, max) => Math.random() * (max - min) + min;
+
+        // 构建完美的 Adidas 三叶草 (Trefoil) SVG 模板
+        // 内部的白/黑色仅作 mask 遮罩计算使用，不会在屏幕上显示出黑白灰
+        const trefoilSVG = (color) => `
+            <svg viewBox="0 0 100 100" style="width: 80%; height: 80%; fill: ${color}; filter: drop-shadow(0 0 10px ${colors[Math.floor(R(0,3))]});">
+                <defs>
+                    <mask id="stripe-cutout">
+                        <rect width="100" height="100" fill="white" />
+                        <rect y="68" width="100" height="4" fill="black" />
+                        <rect y="76" width="100" height="4" fill="black" />
+                        <rect y="84" width="100" height="4" fill="black" />
+                    </mask>
+                </defs>
+                <g mask="url(#stripe-cutout)">
+                    <!-- 中心叶片 -->
+                    <ellipse cx="50" cy="45" rx="18" ry="35" />
+                    <!-- 左叶片 -->
+                    <ellipse cx="28" cy="55" rx="16" ry="32" transform="rotate(-35 28 55)" />
+                    <!-- 右叶片 -->
+                    <ellipse cx="72" cy="55" rx="16" ry="32" transform="rotate(35 72 55)" />
+                </g>
+            </svg>
+        `;
+
+        let elements = [];
+
+        // 1. 生成 300 个极致繁复的 Adidas 碎片（三叶草与三条杠混合）
+        for (let i = 0; i < 300; i++) {
+            let el = document.createElement('div');
+            el.className = 'glass-shard';
+            
+            // 随机大小、极端的磨砂玻璃背景色
+            let size = R(80, 400);
+            el.style.width = `${size}px`;
+            el.style.height = `${size}px`;
+            el.style.borderRadius = `${R(0, 50)}%`; // 随机变为圆形或不规则形
+            el.style.backgroundColor = `${colors[Math.floor(R(0,3))]}33`; // 20% 透明度
+            el.style.borderColor = colors[Math.floor(R(0,3))];
+
+            // 初始随机空间位置
+            let x = R(-2500, 2500);
+            let y = R(-2500, 2500);
+            let z = R(-2000, 1500);
+            let rx = R(0, 360), ry = R(0, 360), rz = R(0, 360);
+
+            // 60% 概率是三叶草，40% 概率是三条杠，确保满屏幕都是 Adidas 图标
+            if (Math.random() > 0.4) {
+                el.innerHTML = trefoilSVG(colors[Math.floor(R(0,3))]);
+            } else {
+                let stripeColor = colors[Math.floor(R(0,3))];
+                el.innerHTML = `
+                    <div class="stripe-container" style="height: ${size * 0.8}px;">
+                        <div class="stripe" style="background: ${stripeColor}"></div>
+                        <div class="stripe" style="background: ${stripeColor}"></div>
+                        <div class="stripe" style="background: ${stripeColor}"></div>
+                    </div>
+                `;
+            }
+
+            matrix.appendChild(el);
+            elements.push({ node: el, x, y, z, rx, ry, rz, speed: R(1, 5) });
+        }
+
+        // 2. 插入潜意识洗脑文字
+        let textNodes = [];
+        for (let i = 0; i < 30; i++) {
+            let txt = document.createElement('div');
+            txt.className = 'alien-text';
+            matrix.appendChild(txt);
+            textNodes.push({ node: txt, x: R(-1500, 1500), y: R(-1500, 1500), z: R(-500, 1000) });
+        }
+
+        // 3. Audio-Visual Vibe Engine 视听律动引擎
+        let time = 0;
+        let mouseX = 0, mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        function renderVibe() {
+            time += 0.15; // 高速时间流，模拟 150BPM
+            
+            // 模拟强烈的重低音律动 (Bass pumping)
+            let bassPump = 1 + Math.abs(Math.sin(time * 2)) * 0.3;
+
+            // 扭曲整个矩阵容器
+            matrix.style.transform = `
+                rotateX(${mouseY * 90 + Math.sin(time)*10}deg) 
+                rotateY(${mouseX * 90 + Math.cos(time)*10}deg)
+                scale(${bassPump})
+            `;
+
+            // 驱动 300 个 Adidas 碎片的疯狂独立旋转
+            elements.forEach((item, i) => {
+                item.rx += item.speed;
+                item.ry += item.speed * 0.5;
+                item.rz -= item.speed;
+                
+                // 空间波浪形位移，制造眩晕感
+                let offsetX = Math.sin(time + i) * 200;
+                let offsetY = Math.cos(time + i) * 200;
+
+                item.node.style.transform = `
+                    translate3d(${item.x + offsetX}px, ${item.y + offsetY}px, ${item.z}px)
+                    rotateX(${item.rx}deg) rotateY(${item.ry}deg) rotateZ(${item.rz}deg)
+                `;
+            });
+
+            // 驱动乱码洗脑文字
+            textNodes.forEach((item, i) => {
+                item.node.style.transform = `translate3d(${item.x}px, ${item.y}px, ${item.z + Math.sin(time*3+i)*500}px) scale(${bassPump})`;
+                if (Math.random() > 0.7) {
+                    item.node.innerText = Math.random() > 0.5 ? "A D I D A S" : "⏃⎅⟟⎅⏃⌇ /// ///";
+                    item.node.style.color = colors[Math.floor(R(0,3))];
+                }
+            });
+
+            requestAnimationFrame(renderVibe);
+        }
+
+        // 启动超频
+        renderVibe();
+    </script>
+</body>
+</html>

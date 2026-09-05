@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/// A D I D A S _ E U P H O R I A ///</title>
+    <style>
+        :root {
+            --red: #ff003c;
+            --purple: #9d00ff;
+            --green: #00ff2a;
+            --bg-dark: #050005;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-dark);
+            overflow: hidden;
+            font-family: 'Arial Black', Impact, sans-serif;
+            perspective: 1000px;
+        }
+
+        /* 宇宙背景扭曲 */
+        #universe {
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, transparent 20%, var(--bg-dark) 80%),
+                        repeating-conic-gradient(from 0deg, var(--red) 0deg 10deg, var(--purple) 10deg 20deg, var(--green) 20deg 30deg);
+            animation: spinUniverse 10s linear infinite;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        /* 悬浮发光粒子 */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(20px);
+            mix-blend-mode: screen;
+            z-index: 1;
+            animation: floatOrb 5s ease-in-out infinite alternate;
+        }
+
+        /* 磨砂玻璃层 - 眩晕核心 */
+        .glass-matrix {
+            position: absolute;
+            top: 10%; left: 10%;
+            width: 80%; height: 80%;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            box-shadow: 0 0 50px rgba(157, 0, 255, 0.5), inset 0 0 30px rgba(0, 255, 42, 0.2);
+            z-index: 2;
+            animation: matrixWobble 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+            transform-style: preserve-3d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glass-overlay {
+            position: absolute;
+            width: 150%; height: 150%;
+            background: linear-gradient(45deg, rgba(255,0,60,0.1), rgba(157,0,255,0.1), rgba(0,255,42,0.1));
+            backdrop-filter: blur(5px);
+            z-index: 10;
+            pointer-events: none;
+            animation: spinOverlay 8s linear infinite reverse;
+        }
+
+        /* 三条杠信仰 - Adidas 主视觉 */
+        .adidas-core {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            z-index: 5;
+            animation: throbBeat 0.43s infinite alternate; /* 模拟 140 BPM */
+            transform: skewY(-15deg) skewX(-15deg);
+        }
+
+        .stripe {
+            width: 60px;
+            background: linear-gradient(to top, var(--red), var(--purple), var(--green));
+            box-shadow: 0 0 40px var(--red), 0 0 80px var(--purple), 0 0 120px var(--green);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 三条杠阶梯高度 */
+        .stripe:nth-child(1) { height: 150px; }
+        .stripe:nth-child(2) { height: 250px; }
+        .stripe:nth-child(3) { height: 350px; }
+
+        /* 条纹内部的高速流动光效 */
+        .stripe::after {
+            content: '';
+            position: absolute;
+            top: -100%; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255,255,255,0.8);
+            filter: blur(5px);
+            animation: lightSpeed 0.8s linear infinite;
+        }
+        .stripe:nth-child(2)::after { animation-delay: 0.2s; }
+        .stripe:nth-child(3)::after { animation-delay: 0.4s; }
+
+        /* 潜意识植入文字 */
+        .subliminal-text {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%) skewX(15deg);
+            font-size: 6rem;
+            font-weight: 900;
+            letter-spacing: 20px;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--green);
+            text-shadow: 0 0 20px var(--purple), 0 0 40px var(--red);
+            white-space: nowrap;
+            animation: textGlitch 0.2s infinite;
+        }
+
+        /* 动态视听波形环绕 */
+        #visualizer-ring {
+            position: absolute;
+            width: 600px; height: 600px;
+            border: 5px dashed var(--purple);
+            border-radius: 50%;
+            z-index: 3;
+            animation: pulseRing 1s infinite alternate, spinRing 4s linear infinite;
+            box-shadow: inset 0 0 50px var(--red), 0 0 50px var(--green);
+        }
+
+        /* 动画定义区 */
+        @keyframes spinUniverse {
+            0% { transform: rotate(0deg) scale(1); filter: hue-rotate(0deg); }
+            50% { transform: rotate(180deg) scale(1.5); filter: hue-rotate(90deg); } /* 色相偏移但在红紫绿之间流转 */
+            100% { transform: rotate(360deg) scale(1); filter: hue-rotate(0deg); }
+        }
+
+        @keyframes matrixWobble {
+            0% { transform: translateZ(-100px) rotateX(10deg) rotateY(-10deg); }
+            33% { transform: translateZ(50px) rotateX(-20deg) rotateY(15deg); }
+            66% { transform: translateZ(150px) rotateX(15deg) rotateY(25deg); }
+            100% { transform: translateZ(-100px) rotateX(10deg) rotateY(-10deg); }
+        }
+
+        @keyframes spinOverlay {
+            100% { transform: rotate(-360deg) scale(1.5); }
+        }
+
+        @keyframes throbBeat {
+            0% { transform: skewY(-15deg) skewX(-15deg) scale(1) translateZ(0); filter: brightness(1); }
+            100% { transform: skewY(-15deg) skewX(-15deg) scale(1.2) translateZ(100px); filter: brightness(1.5); }
+        }
+
+        @keyframes lightSpeed {
+            0% { top: -100%; }
+            100% { top: 200%; }
+        }
+
+        @keyframes textGlitch {
+            0% { transform: translateX(-50%) skewX(15deg) translate(2px, 2px); -webkit-text-stroke: 2px var(--red); }
+            33% { transform: translateX(-50%) skewX(15deg) translate(-2px, -2px); -webkit-text-stroke: 2px var(--green); }
+            66% { transform: translateX(-50%) skewX(15deg) translate(2px, -2px); -webkit-text-stroke: 2px var(--purple); }
+            100% { transform: translateX(-50%) skewX(15deg) translate(-2px, 2px); -webkit-text-stroke: 2px var(--red); }
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            100% { transform: scale(1.1) rotate(180deg); opacity: 1; border-color: var(--green); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="universe"></div>
+
+    <div id="particles-container"></div>
+
+    <div class="glass-overlay"></div>
+
+    <div class="glass-matrix">
+        <div id="visualizer-ring"></div>
+        
+        <div class="adidas-core" id="adidas-logo">
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="subliminal-text">A D I D A S</div>
+        </div>
+    </div>
+
+    <script>
+        // 高维生成逻辑：用JS驱动粒子的疯狂运动和模拟音频可视化的律动
+        const colors = ['#ff003c', '#9d00ff', '#00ff2a'];
+        const container = document.getElementById('particles-container');
+        const logo = document.getElementById('adidas-logo');
+        const stripes = document.querySelectorAll('.stripe');
+
+        // 1. 生成极速运动的光球（RGB三色限定）
+        for (let i = 0; i < 40; i++) {
+            let orb = document.createElement('div');
+            orb.classList.add('orb');
+            
+            // 随机属性
+            let size = Math.random() * 150 + 50;
+            let color = colors[Math.floor(Math.random() * colors.length)];
+            let startX = Math.random() * window.innerWidth;
+            let startY = Math.random() * window.innerHeight;
+            let duration = Math.random() * 3 + 2; // 极快速度 2-5秒
+            
+            orb.style.width = `${size}px`;
+            orb.style.height = `${size}px`;
+            orb.style.background = color;
+            orb.style.left = `${startX}px`;
+            orb.style.top = `${startY}px`;
+            
+            // 动态注入独特的关键帧动画来增加眩晕感
+            let animName = `moveOrb${i}`;
+            let styleSheet = document.styleSheets[0];
+            let keyframes = `
+                @keyframes ${animName} {
+                    0% { transform: translate(0, 0) scale(1); }
+                    33% { transform: translate(${Math.random() * 400 - 200}px, ${Math.random() * 400 - 200}px) scale(1.5); }
+                    66% { transform: translate(${Math.random() * -400 + 200}px, ${Math.random() * -400 + 200}px) scale(0.5); }
+                    100% { transform: translate(0, 0) scale(1); }
+                }
+            `;
+            styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+            orb.style.animation = `${animName} ${duration}s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1) alternate`;
+            
+            container.appendChild(orb);
+        }
+
+        // 2. 模拟 Audio-Visualizer 高频动态反馈 (Vibe Coding)
+        let time = 0;
+        function renderAudiovisual() {
+            time += 0.15;
+            
+            // 基于正弦波模拟强烈的音乐节拍，直接改变三条杠的高度和扭曲度
+            let beat1 = Math.abs(Math.sin(time)) * 50;
+            let beat2 = Math.abs(Math.cos(time * 1.2)) * 80;
+            let beat3 = Math.abs(Math.sin(time * 0.8)) * 120;
+
+            stripes[0].style.height = `${150 + beat1}px`;
+            stripes[1].style.height = `${250 + beat2}px`;
+            stripes[2].style.height = `${350 + beat3}px`;
+
+            // 整个logo基于假想重低音产生随机位移抖动
+            let jitterX = (Math.random() - 0.5) * 10;
+            let jitterY = (Math.random() - 0.5) * 10;
+            
+            // 保持原有的倾斜，叠加震动
+            logo.style.transform = `skewY(-15deg) skewX(-15deg) translate(${jitterX}px, ${jitterY}px)`;
+
+            requestAnimationFrame(renderAudiovisual);
+        }
+        
+        // 启动超频
+        renderAudiovisual();
+    </script>
+</body>
+</html>
