@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>/// ⏃⎅⟟⎅⏃⌇ /// PORTAL /// ⏃⎅⟟⎅⏃⌇ ///</title>
+<style>
+  :root{
+    --r:#FF003C;
+    --p:#7B00FF;
+    --g:#00FF2A;
+    --bg:#0d0018;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;padding:0;width:100vw;height:100vh;overflow:hidden;
+    background:var(--bg);
+    font-family:'Arial Black', Impact, 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* drifting chaos background — same red/purple/green universe as the 4 pages, toned down so links stay usable */
+  #bg-matrix{position:fixed;inset:0;z-index:0;overflow:hidden;}
+  .shard{
+    position:absolute;
+    backdrop-filter:blur(30px) saturate(250%);
+    -webkit-backdrop-filter:blur(30px) saturate(250%);
+    border:2px solid rgba(0,255,42,0.35);
+    background:rgba(123,0,255,0.10);
+    box-shadow:0 0 60px rgba(255,0,60,0.25);
+    mix-blend-mode:screen;
+    will-change:transform;
+  }
+  .strip{
+    position:absolute;
+    width:14px;
+    background:linear-gradient(to top, var(--r), var(--p), var(--g));
+    box-shadow:0 0 20px var(--p);
+    transform:skewX(-18deg);
+    opacity:0.5;
+  }
+
+  @keyframes drift{
+    0%{transform:translate3d(0,0,0) rotate(0deg);}
+    50%{transform:translate3d(var(--dx), var(--dy), 0) rotate(180deg);}
+    100%{transform:translate3d(0,0,0) rotate(360deg);}
+  }
+
+  /* foreground */
+  #stage{
+    position:relative;z-index:2;
+    width:100%;height:100%;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    gap:clamp(28px, 5vh, 56px);
+    padding:24px;
+  }
+
+  .kicker{
+    font-family:'Courier New', Courier, monospace;
+    font-size:clamp(12px,1.6vw,15px);
+    letter-spacing:0.4em;
+    color:var(--g);
+    text-shadow:0 0 12px var(--g);
+    opacity:0.85;
+  }
+
+  .wordmark{
+    font-size:clamp(2.4rem, 8vw, 6rem);
+    font-weight:900;
+    line-height:0.95;
+    text-align:center;
+    color:transparent;
+    -webkit-text-stroke:2px var(--g);
+    text-shadow:6px 6px 0 var(--r), -6px -6px 0 var(--p);
+    letter-spacing:-0.01em;
+    transition:transform 0.15s ease-out;
+    transform-style:preserve-3d;
+  }
+
+  .portals{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(150px,220px));
+    gap:22px;
+  }
+  @media (max-width:520px){
+    .portals{grid-template-columns:1fr;}
+  }
+
+  .portal{
+    position:relative;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    gap:10px;
+    padding:22px 18px;
+    border-radius:18px;
+    border:2px solid rgba(0,255,42,0.4);
+    background:rgba(123,0,255,0.14);
+    backdrop-filter:blur(18px) saturate(200%);
+    -webkit-backdrop-filter:blur(18px) saturate(200%);
+    overflow:hidden;
+    transition:transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .portal:hover, .portal:focus-visible{
+    transform:translateY(-6px) scale(1.03);
+    border-color:var(--g);
+    box-shadow:0 12px 50px rgba(255,0,60,0.35), 0 0 40px rgba(0,255,42,0.25);
+  }
+  .portal:focus-visible{outline:3px solid var(--g); outline-offset:3px;}
+
+  .portal-icon{display:flex; gap:6px; align-items:flex-end; height:46px;}
+  .portal-icon i{width:8px;border-radius:2px 2px 0 0; display:block;}
+  .portal-icon i:nth-child(1){height:55%;background:var(--r);}
+  .portal-icon i:nth-child(2){height:100%;background:var(--p);}
+  .portal-icon i:nth-child(3){height:75%;background:var(--g);}
+
+  .portal-label{
+    font-family:'Courier New', Courier, monospace;
+    font-size:0.85rem;
+    letter-spacing:0.12em;
+    color:#fff;
+    text-shadow:0 0 8px var(--p);
+    text-align:center;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .shard, .strip{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+  <div id="bg-matrix"></div>
+
+  <div id="stage">
+    <div class="kicker">SELECT YOUR REALITY</div>
+    <div class="wordmark" id="wordmark">⏃⎅⟟⎅⏃⌇<br>ADIDAS<br>⏃⎅⟟⎅⏃⌇</div>
+
+    <div class="portals">
+      <a class="portal" href="gemini0.html">
+        <div class="portal-icon"><i></i><i></i><i></i></div>
+        <div class="portal-label">EUPHORIA</div>
+      </a>
+      <a class="portal" href="gemini1.html">
+        <div class="portal-icon"><i></i><i></i><i></i></div>
+        <div class="portal-label">ALIEN TREFOIL</div>
+      </a>
+      <a class="portal" href="gemini2.html">
+        <div class="portal-icon"><i></i><i></i><i></i></div>
+        <div class="portal-label">VERTIGO</div>
+      </a>
+      <a class="portal" href="gemini3.html">
+        <div class="portal-icon"><i></i><i></i><i></i></div>
+        <div class="portal-label">TREFOIL OVERLOAD</div>
+      </a>
+    </div>
+  </div>
+
+<script>
+  const bg = document.getElementById('bg-matrix');
+  const R = (min,max)=>Math.random()*(max-min)+min;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(!reduceMotion){
+    for(let i=0;i<22;i++){
+      const el = document.createElement('div');
+      el.className = 'shard';
+      const size = R(60,220);
+      el.style.width = size+'px';
+      el.style.height = size+'px';
+      el.style.borderRadius = R(20,50)+'%';
+      el.style.left = R(-5,95)+'vw';
+      el.style.top = R(-5,95)+'vh';
+      el.style.setProperty('--dx', R(-120,120)+'px');
+      el.style.setProperty('--dy', R(-120,120)+'px');
+      el.style.animation = `drift ${R(14,26)}s ease-in-out infinite`;
+      el.style.animationDelay = R(-10,0)+'s';
+      bg.appendChild(el);
+    }
+    for(let i=0;i<8;i++){
+      const s = document.createElement('div');
+      s.className='strip';
+      s.style.height = R(120,260)+'px';
+      s.style.left = R(0,100)+'vw';
+      s.style.top = R(0,100)+'vh';
+      s.style.setProperty('--dx', R(-80,80)+'px');
+      s.style.setProperty('--dy', R(-80,80)+'px');
+      s.style.animation = `drift ${R(18,30)}s ease-in-out infinite`;
+      bg.appendChild(s);
+    }
+  }
+
+  const wordmark = document.getElementById('wordmark');
+  document.addEventListener('mousemove', (e)=>{
+    if(reduceMotion) return;
+    const mx = (e.clientX/window.innerWidth - 0.5)*2;
+    const my = (e.clientY/window.innerHeight - 0.5)*2;
+    wordmark.style.transform = `rotateX(${my*-6}deg) rotateY(${mx*6}deg)`;
+  });
+</script>
+</body>
+</html>
